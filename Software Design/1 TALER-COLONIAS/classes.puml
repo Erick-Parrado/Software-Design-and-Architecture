@@ -1,0 +1,95 @@
+@startuml Colonias
+    
+    class ColonyHouse{
+        id:integer
+        name:string
+        postalAddress:string
+        postalCode:integer
+        nameStreet: string
+        capacity: integer
+        region: string
+        --
+        createHouse()
+        readHouse()
+        updateHouse()
+        deleteHouse()
+        addKid()
+        addActivity()
+    }
+
+    class Room{
+        id:integer
+        code: string
+        houseId: number
+        --
+        createRoom()
+        readRoom()
+        updateRoom()
+        deleteRoom()
+    }
+
+    class Activity{
+        id: integer
+        houseId: number
+        evaluation: number
+        --
+        createActivity()
+        readActivity()
+        updateActivity()
+        deleteActivity()
+        evaluateActivity()
+    }
+
+    class Tutor{
+        id:integer
+        name: string
+        phone: string
+        houseId: integer
+        --
+        createTutor()
+        readTutor()
+        updateTutor()
+        deleteTutor()
+    }
+
+    class Director{
+        --
+        createDirector()
+        readDirector()
+        updateDirector()
+        deleteDirector()
+    }
+
+    class Kid{
+        id:integer
+        name: string
+        houseId: string
+        phone: string
+        region: string
+        --
+        createKid()
+        readKid()
+        updateKid()
+        deleteKid()
+    }
+
+    class Region{
+        name: string
+        population: integer
+        --
+        createRegion()
+        readRegion()
+        updateRegion()
+        deleteRegion()
+    }
+
+    ColonyHouse o-- Room
+    Kid --o ColonyHouse
+    Tutor --* ColonyHouse
+    Director -up-|> Tutor
+    Activity --o ColonyHouse
+    Region -- Kid
+    Region -left- ColonyHouse
+
+
+@enduml
