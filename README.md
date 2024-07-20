@@ -1,12 +1,12 @@
-#SOFTWARE DESIGN AND ARCHITECTURE
+# SOFTWARE DESIGN AND ARCHITECTURE
 For save the works of the Software Design and Architecture classes in software engineer semester sixth in Uniempresarial
 
-##To open
+## To open
 Use Visual Studio Code 
 
 To watch UML install [Plant UML](https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000 "Plant UML") plugin
 
-####Credits
+#### Credits
 By Erick Hernando Parrado Moyano
 
 
