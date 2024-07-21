@@ -1,0 +1,95 @@
+@startuml Colonies
+    class House{
+        -id:integer
+        -name:string
+        +postalAddress:string
+        -postalCode:integer
+        -nameStreet: string
+        +capacity: integer
+        +region: Region
+        --
+        +createHouse(name,postalCode,nameStreet,capacity,region)
+        +readHouse()
+        +updateHouse(?name,?capacity)
+        +deleteHouse()
+        +addKid(newKid)
+        +addActivity(newActivity)
+    }
+
+    class Room{
+        -id:integer
+        +code: string
+        -houseId: number
+        --
+        +createRoom(code,houseId)
+        +readRoom()
+        +updateRoom(?code)
+        +deleteRoom()
+    }
+
+    class Activity{
+        -id: integer
+        -evaluation: float
+        +name: integer
+        --
+        +createActivity(name)
+        +readActivity()
+        +updateActivity(?name)
+        +deleteActivity()
+        +evaluateActivity(grade)
+    }
+
+    class Tutor{
+        -id:integer
+        -name: string
+        -phone: string
+        -houseId: integer
+        --
+        +createTutor(name,phone,houseId)
+        +readTutor()
+        +updateTutor(?name,?phone,?houseId)
+        +deleteTutor()
+    }
+
+    class Director{
+        --
+        +createDirector(name,phone,houseId)
+        +readDirector()
+        +updateDirector(?name,?phone,?houseId)
+        +deleteDirector()
+    }
+
+    class Kid{
+        -id:integer
+        -name: string
+        -houseId: string
+        -parentsPhone: string
+        -regionId: string
+        --
+        +createKid(name,parentsPhone,region)
+        +readKid()
+        +updateKid(?name,?parentsPhone,?regionId)
+        +deleteKid()
+    }
+
+    class Region{
+        -id: integer
+        -name: string
+        +population: integer
+        --
+        +createRegion()
+        +readRegion()
+        +updateRegion()
+        +deleteRegion()
+        +addHabitant()
+    }
+
+    House o-- Room
+    Kid --o House
+    Tutor --* House
+    Director --* House
+    Director -up-|> Tutor
+    Activity --o House
+    Region -- Kid
+    Region -left- House
+@enduml

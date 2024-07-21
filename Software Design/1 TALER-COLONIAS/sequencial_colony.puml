@@ -1,0 +1,217 @@
+@startuml Colonies_Sequencial
+    actor TutorU as TU
+    actor KidU as KU
+    participant UI
+    participant House as H
+    participant Kid as K
+    participant Director as D
+    participant Region as Z
+    participant Room as R
+    participant Tutor as T
+    participant Activity as A
+
+    'House Class 
+    group Houses
+        TU-> UI
+        activate UI
+        UI -> H:createHouse(name,postalCode,nameStreet,capacity,region)
+        deactivate UI
+        TU-> UI
+        activate UI
+        UI -> H: readHouse()
+        activate H
+        H -> UI: HouseData
+        deactivate H
+        TU<- UI
+        deactivate UI
+
+        TU-> UI
+        activate UI
+        UI -> H:updateHouse(?name,?capacity)
+        deactivate UI
+        
+        TU->UI
+        activate UI
+        UI -> H:deleteHouse()
+        deactivate UI
+
+        TU-> UI
+        activate UI
+        UI->H: addKid(newKid)
+        deactivate UI
+        activate H
+        H->K: readKid()
+        activate K
+        K->H: KidData
+        deactivate K
+        deactivate H
+        
+        TU-> UI
+        activate UI
+        UI->H:addActivity(newActivity)
+        activate H
+        H-> A: readActivity()
+        activate A
+        A->H:ActivityData
+        deactivate A
+        deactivate H
+        deactivate UI
+    end
+    'Kids
+    group Kids
+        TU-> UI
+        activate UI
+        UI -> K:createKid(name,parentsPhone,region)
+        activate K
+        K->Z:addHabitant()
+        deactivate K
+        deactivate UI
+        TU-> UI
+        activate UI
+        UI -> K: readKid()
+        activate K
+        K -> UI: KidData
+        deactivate K
+        TU<- UI
+        deactivate UI
+
+        TU-> UI
+        activate UI
+        UI -> K:updateKid(?name,?parentsPhone,?region)
+        deactivate UI
+        
+        TU->UI
+        activate UI
+        UI -> K:deleteKid()
+        deactivate UI
+    end
+    'Tutor
+    group Tutor
+        TU-> UI
+        activate UI
+        UI -> T:createTutor(name,phone,houseId)
+        deactivate UI
+        TU-> UI
+        activate UI
+        UI -> T: readTutor()
+        activate T
+        T -> UI: TutorData
+        deactivate T
+        TU<- UI
+        deactivate UI
+
+        TU-> UI
+        activate UI
+        UI -> T:updateTutor(?name,?phone,?houseId)
+        deactivate UI
+        
+        TU->UI
+        activate UI
+        UI -> T:deleteTutor()
+        deactivate UI
+    end
+    'Director
+    group Director
+        TU-> UI
+        activate UI
+        UI -> D:createDirector(name,phone,houseId)
+        deactivate UI
+        TU-> UI
+        activate UI
+        UI -> D: readDirector()
+        activate D
+        D -> UI: DirectorData
+        deactivate D
+        TU<- UI
+        deactivate UI
+
+        TU-> UI
+        activate UI
+        UI -> D:updateDirector(?name,?phone,?houseId)
+        deactivate UI
+        
+        TU ->UI
+        activate UI
+        UI -> D:deleteDirector()
+        deactivate UI
+    end
+    'Activity
+    group Activity
+        TU-> UI
+        activate UI
+        UI -> A:createActivity(name)
+        deactivate UI
+        TU-> UI
+        activate UI
+        UI -> A: readActivity()
+        activate A
+        A -> UI: ActivityData
+        deactivate A
+        TU<- UI
+        deactivate UI
+
+        TU-> UI
+        activate UI
+        UI -> A:updateActivity(?name)
+        deactivate UI
+        
+        TU->UI
+        activate UI
+        UI -> A:deleteActivity()
+        deactivate UI
+
+        KU -> UI
+        activate UI
+        UI -> A:evaluateAcitvity(grade)
+        deactivate UI
+    end
+    'Room
+    group Room
+        TU-> UI
+        activate UI
+        UI -> R:createRoom(code,houseId)
+        deactivate UI
+        TU-> UI
+        activate UI
+        UI -> R: readRoom()
+        activate R
+        R -> UI: RoomData
+        deactivate R
+        TU <- UI
+        deactivate UI
+
+        TU-> UI
+        activate UI
+        UI -> R:updateRoom(?code)
+        deactivate UI
+        
+        TU ->UI
+        activate UI
+        UI -> R:deleteRoom()
+        deactivate UI
+    end
+    
+    'Region
+    group Region
+        TU-> UI
+        activate UI
+        UI -> Z: createRegion(name,population)
+        deactivate UI
+        TU-> UI
+        activate UI
+        UI -> Z: readRegion()
+        activate Z
+        Z -> UI: RegionData
+        deactivate Z
+        TU <- UI
+        deactivate UI
+        TU-> UI
+        activate UI
+        UI -> Z:updateRegion(?name,?population)
+        deactivate UI
+        TU ->UI
+        activate UI
+        UI -> Z:deleteRegion()
+        deactivate UI
+    end
+@enduml
