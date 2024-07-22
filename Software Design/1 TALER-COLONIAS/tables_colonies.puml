@@ -1,0 +1,60 @@
+@startuml Colonies
+    skinparam linetype ortho
+
+    entity "Rooms" as R{
+        # room_id <<PK>>
+        --
+        room_code
+        ~ hous_id <<FK>>
+    }
+    entity "Houses" as H{
+        # hous_id <<PK>>
+        --
+        hous_name
+        hous_postalAddress
+        hous_postalCode
+        hous_nameStreet
+        hous_capacity
+        ~regi_id <<FK>>
+    }
+    entity "Kids" as K{
+        #kid_id <<PK>>
+        --
+        kid_name
+        kid_parentsPhone
+        ~regi_id <<FK>>
+        ~hous_id <<FK>>
+    }
+    
+    entity "Tutor" as T{
+        # tuto_id <<PK>>
+        --
+        tuto_name
+        tuto_phone
+        tuto_role
+        ~hous_id <<FK>>
+    }
+    
+    entity "Region" as Z{
+        # regi_id
+        --
+        regi_name
+        regi_population
+    }
+
+    entity "Activity" as A{
+        # acti_id <<PK>>
+        --
+        acti_evaluation
+        acti_name
+        ~ hous_id <<FK>>
+    }
+
+    H ||-left-o{ R
+    H ||--o{ K
+    H ||--o{ Z
+    H ||--|{ A
+    H }o-right-|| T
+    K }o-right-|| Z
+
+@enduml
