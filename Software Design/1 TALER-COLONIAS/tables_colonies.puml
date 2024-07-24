@@ -26,7 +26,7 @@
         ~hous_id <<FK>>
     }
     
-    entity "Tutor" as T{
+    entity "Tutors" as T{
         # tuto_id <<PK>>
         --
         tuto_name
@@ -35,26 +35,44 @@
         ~hous_id <<FK>>
     }
     
-    entity "Region" as Z{
+    entity "Regions" as Z{
         # regi_id
         --
         regi_name
         regi_population
     }
 
-    entity "Activity" as A{
+    entity "Activities" as A{
         # acti_id <<PK>>
-        --
-        acti_evaluation
+        ---
         acti_name
+    }
+    
+
+    entity "Hous_Acti" as HA{
+        # hoac_id <<PK>>
+        --
+        ~ acti_id <<FK>>
         ~ hous_id <<FK>>
+    }
+
+    entity "Kids_HoAc" as KHA{
+        # kiha_id <<PK>>
+        --
+        kiha_evaluation
+        ~ kid_id <<FK>>
+        ~ hoac_id <<FK>>
     }
 
     H ||-left-o{ R
     H ||--o{ K
     H ||--o{ Z
-    H ||--|{ A
+    H ||--|{ HA
+    A ||--|{ HA
     H }o-right-|| T
     K }o-right-|| Z
+    K ||--|{ KHA
+    HA ||--|{ KHA
+
 
 @enduml
