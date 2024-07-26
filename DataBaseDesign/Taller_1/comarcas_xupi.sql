@@ -177,8 +177,7 @@ BEGIN
     WHILE i <= 50 DO
         INSERT INTO Kids_HoAc (kid_id,hoac_id,kiha_evaluation) VALUES (FLOOR(RAND()*20)+1,FLOOR(RAND() * 10) + 1,RAND()*5+1);
         SET i = i + 1;
-    END WHILE;
-	END IF;
+    END WHILE; 
 END;//
 DELIMITER ;
 /*---------------------------------------------------------------------*/

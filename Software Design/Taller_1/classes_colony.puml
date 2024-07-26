@@ -1,12 +1,12 @@
 @startuml Colonies
+    skinparam linetype ortho
+    
     class House{
-        -id:integer
         -name:string
         +postalAddress:string
         -postalCode:integer
         -nameStreet: string
         +capacity: integer
-        +region: Region
         --
         +createHouse(name,postalCode,nameStreet,capacity,region)
         +readHouse()
@@ -19,7 +19,6 @@
     class Room{
         -id:integer
         +code: string
-        -houseId: number
         --
         +createRoom(code,houseId)
         +readRoom()
@@ -28,7 +27,6 @@
     }
 
     class Activity{
-        -id: integer
         -evaluation: float
         +name: integer
         --
@@ -40,10 +38,8 @@
     }
 
     class Tutor{
-        -id:integer
         -name: string
         -phone: string
-        -houseId: integer
         --
         +createTutor(name,phone,houseId)
         +readTutor()
@@ -60,11 +56,8 @@
     }
 
     class Kid{
-        -id:integer
         -name: string
-        -houseId: string
         -parentsPhone: string
-        -regionId: string
         --
         +createKid(name,parentsPhone,region)
         +readKid()
@@ -73,7 +66,6 @@
     }
 
     class Region{
-        -id: integer
         -name: string
         +population: integer
         --
@@ -84,12 +76,12 @@
         +addHabitant()
     }
 
-    House o-- Room
+    House *-- Room
     Kid --o House
     Tutor --* House
     Director --* House
     Director -up-|> Tutor
     Activity --o House
-    Region -- Kid
-    Region -left- House
+    Region <-- Kid
+    Region <-left- House
 @enduml
