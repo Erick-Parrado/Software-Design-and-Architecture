@@ -10,17 +10,16 @@
         --
         +createHouse(name,postalCode,nameStreet,capacity,region)
         +readHouse()
-        +updateHouse(?name,?capacity)
+        +updateHouse(?name,?capacity,?region)
         +deleteHouse()
         +addKid(newKid)
         +addActivity(newActivity)
     }
 
     class Room{
-        -id:integer
         +code: string
         --
-        +createRoom(code,houseId)
+        +createRoom(code)
         +readRoom()
         +updateRoom(?code)
         +deleteRoom()
@@ -28,30 +27,30 @@
 
     class Activity{
         -evaluation: float
-        +name: integer
+        +name: string
         --
         +createActivity(name)
         +readActivity()
-        +updateActivity(?name)
+        +updateActivity(?name,?evaluation)
         +deleteActivity()
-        +evaluateActivity(grade)
+        +evaluate(grade,kid)
     }
 
     class Tutor{
         -name: string
         -phone: string
         --
-        +createTutor(name,phone,houseId)
+        +createTutor(name,phone)
         +readTutor()
-        +updateTutor(?name,?phone,?houseId)
+        +updateTutor(?name,?phone)
         +deleteTutor()
     }
 
     class Director{
         --
-        +createDirector(name,phone,houseId)
+        +createDirector(name,phoned)
         +readDirector()
-        +updateDirector(?name,?phone,?houseId)
+        +updateDirector(?name,?phone)
         +deleteDirector()
     }
 
@@ -59,9 +58,9 @@
         -name: string
         -parentsPhone: string
         --
-        +createKid(name,parentsPhone,region)
+        +createKid(name,parentsPhone)
         +readKid()
-        +updateKid(?name,?parentsPhone,?regionId)
+        +updateKid(?name,?parentsPhone)
         +deleteKid()
     }
 
@@ -69,9 +68,9 @@
         -name: string
         +population: integer
         --
-        +createRegion()
+        +createRegion(name)
         +readRegion()
-        +updateRegion()
+        +updateRegion(?name)
         +deleteRegion()
         +addHabitant()
     }
