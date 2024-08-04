@@ -1,0 +1,25 @@
+@startuml
+    class I as "Items"{
+        
+    }
+
+    class FF as "FabricaFactura"{
+        +crearFactura()
+        +eliminarEliminar()
+    }
+
+    class FSI as "FacturaAlContado"{
+
+    }
+
+    class FCI as "FacturaAlCredito"{
+
+    }
+
+    FF <|-- FSI
+    FF <|-- FCI
+    FF o-- I 
+
+
+
+@enduml
